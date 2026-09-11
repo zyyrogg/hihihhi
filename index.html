@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8cbd9">
+<title>Esha ♡</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --pink:#e99ab7;
+  --dark:#75445a;
+  --text:#8f6877;
+  --line:#f1ccd9;
+  --white:#ffffff;
+}
+
+html,body{
+  min-height:100%;
+}
+
+body{
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  color:var(--dark);
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 10% 10%,#ffffff 0 7%,transparent 30%),
+    radial-gradient(circle at 90% 85%,#f9c8da 0,transparent 30%),
+    linear-gradient(145deg,#fff9fb,#ffe8f0 52%,#fff7fa);
+}
+
+/* soft background hearts */
+body:before,
+body:after{
+  position:fixed;
+  content:"♡";
+  pointer-events:none;
+  color:#d97e9d20;
+  font-size:110px;
+  z-index:0;
+}
+
+body:before{
+  top:3%;
+  left:-25px;
+  transform:rotate(-15deg);
+}
+
+body:after{
+  right:-25px;
+  bottom:2%;
+  transform:rotate(15deg);
+}
+
+.app{
+  position:relative;
+  z-index:2;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:22px 15px;
+}
+
+.screen{
+  width:min(100%,450px);
+  animation:fadeUp .55s ease;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.card{
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(255,255,255,.95);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-radius:30px;
+  padding:34px 23px;
+  box-shadow:0 22px 70px rgba(184,111,139,.15);
+  text-align:center;
+}
+
+.label{
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-weight:700;
+  color:#c27b96;
+  margin-bottom:11px;
+}
+
+h1,h2{
+  font-family:Georgia,serif;
+  font-weight:600;
+  color:#75445a;
+}
+
+h1{
+  font-size:48px;
+  line-height:1.03;
+  margin-bottom:15px;
+}
+
+h2{
+  font-size:30px;
+  line-height:1.15;
+  margin-bottom:13px;
+}
+
+p{
+  font-size:14px;
+  line-height:1.75;
+  color:var(--text);
+}
+
+.heart{
+  font-size:34px;
+  margin-bottom:10px;
+  animation:float 3s ease-in-out infinite;
+}
+
+/* buttons */
+
+.btn{
+  border:0;
+  border-radius:999px;
+  padding:14px 25px;
+  margin-top:23px;
+  background:linear-gradient(135deg,#eaa0ba,#d982a3);
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 11px 26px rgba(211,127,157,.25);
+  transition:.22s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+/* photo */
+
+.photo-frame{
+  width:min(78vw,290px);
+  height:min(92vw,350px);
+  margin:0 auto 23px;
+  padding:7px;
+  background:#fff;
+  border-radius:25px;
+  box-shadow:0 20px 50px rgba(168,94,123,.18);
+  transform:rotate(-1.5deg);
+}
+
+.photo-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:19px;
+  display:block;
+}
+
+/* questions */
+
+.question-card{
+  text-align:center;
+}
+
+.qno{
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#ca7896;
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+.options{
+  display:grid;
+  gap:11px;
+  margin-top:23px;
+}
+
+.option{
+  width:100%;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:17px;
+  padding:15px 13px;
+  color:#714858;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.option:hover{
+  background:#fff0f5;
+  border-color:#e4a5bc;
+  transform:translateY(-2px);
+}
+
+.option:disabled{
+  cursor:default;
+}
+
+.response{
+  min-height:22px;
+  margin-top:14px;
+  color:#bb6988;
+  font-size:13px;
+  font-weight:700;
+}
+
+/* countdown */
+
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+  margin:25px 0 26px;
+}
+
+.time{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:13px 3px;
+}
+
+.time b{
+  display:block;
+  font-size:23px;
+  color:#75445a;
+}
+
+.time span{
+  font-size:8px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:#bd8298;
+}
+
+.message{
+  text-align:left;
+  margin-top:8px;
+}
+
+.message p{
+  margin-bottom:17px;
+}
+
+.signature{
+  text-align:center;
+  font-family:Georgia,serif;
+  font-style:italic;
+  color:#a65f7b;
+  margin-top:18px;
+}
+
+.sparkles{
+  font-size:21px;
+  letter-spacing:8px;
+  color:#d985a4;
+  margin:9px 0 15px;
+}
+
+/* falling hearts */
+
+.falling{
+  position:fixed;
+  top:-30px;
+  z-index:5;
+  pointer-events:none;
+  animation:fall 4.5s linear forwards;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(17px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+    opacity:.15;
+  }
+}
+
+@media(max-width:360px){
+  h1{font-size:41px}
+  .card{padding:30px 18px}
+  .time b{font-size:19px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- ================= INTRO ================= -->
+
+<section class="screen" id="intro">
+
+  <div class="card">
+
+    <div class="heart">♡</div>
+
+    <div class="label">
+      just a little thing
+    </div>
+
+    <h1>Hey Esha…</h1>
+
+    <p>
+      ek choti si investigation hai 😭<br>
+      aur unfortunately ismein tumhari zaroorat hai.
+    </p>
+
+    <button class="btn" onclick="photoPage()">
+      Start 👀
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PHOTO ================= -->
+
+<section class="screen hidden" id="photo">
+
+  <div class="card">
+
+    <div class="label">
+      first things first
+    </div>
+
+    <div class="photo-frame">
+
+      <!-- EXACT IMAGE NAME -->
+      <img
+        src="IMG-20260911-WA0001.jpg"
+        alt="Esha"
+      >
+
+    </div>
+
+    <h2>kya ye aap hi ho? 😭</h2>
+
+    <p>
+      ya kisi ne Esha ban ke<br>
+      photo laga di hai? 👀
+    </p>
+
+    <div class="options">
+
+      <button
+        class="option"
+        onclick="photoAnswer(true)"
+      >
+        Haan, main hi hoon 😌
+      </button>
+
+      <button
+        class="option"
+        onclick="photoAnswer(false)"
+      >
+        Nahi bhae, galat bandi 💀
+      </button>
+
+    </div>
+
+    <div
+      class="response"
+      id="photoResponse"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= QUESTIONS ================= -->
+
+<section class="screen hidden" id="questions">
+
+  <div class="card question-card">
+
+    <div
+      class="qno"
+      id="qno"
+    >
+      Question 01
+    </div>
+
+    <h2 id="qtext"></h2>
+
+    <div
+      class="options"
+      id="opts"
+    ></div>
+
+    <div
+      class="response"
+      id="resp"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= COUNTDOWN ================= -->
+
+<section class="screen hidden" id="locked">
+
+  <div class="card">
+
+    <div class="heart">♡</div>
+
+    <div class="label">
+      18 september
+    </div>
+
+    <h2>
+      Okayyy bas 😭
+    </h2>
+
+    <p>
+      Ab aur questions nhi.<br>
+      Ab tumhe thora sa wait karna parega.
+    </p>
+
+
+    <div class="countdown">
+
+      <div class="time">
+        <b id="days">00</b>
+        <span>Days</span>
+      </div>
+
+      <div class="time">
+        <b id="hours">00</b>
+        <span>Hours</span>
+      </div>
+
+      <div class="time">
+        <b id="mins">00</b>
+        <span>Minutes</span>
+      </div>
+
+      <div class="time">
+        <b id="secs">00</b>
+        <span>Seconds</span>
+      </div>
+
+    </div>
+
+
+    <div class="message">
+
+      <p>
+        Pata nhi kyun, lekin tum un logon mein se ho
+        jinse baat chahe kitni bhi kam ho, phir bhi ek
+        alag si apnayat rehti hai. Roz baat nhi hoti,
+        har cheez share nhi hoti, lekin iska ye matlab
+        bilkul nhi ke tum yaad nhi rehti.
+      </p>
+
+      <p>
+        Shayad kuch logon ke liye zyada baatein zaroori
+        nhi hoti. Bas jab bhi baat ho, achi lage… aur
+        jab bohat time baad baat ho tab bhi lage ke kuch
+        badla hi nhi. Tum bhi mere liye kuch aisi hi ho.
+      </p>
+
+      <p>
+        Aur honestly, baat ho ya na ho, tum hamesha
+        special rahogi mere liye. Bas itna hi kehna tha…
+        baaki zyada bolunga toh phir tum keh dogi
+        <b>Guu kha lo</b> 😭🤍
+      </p>
+
+    </div>
+
+    <div class="signature">
+      ♡
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= BIRTHDAY ================= -->
+
+<section class="screen hidden" id="birthday">
+
+  <div class="card">
+
+    <div class="sparkles">
+      ✦ ♡ ✦
+    </div>
+
+    <div class="label">
+      finally
+    </div>
+
+    <h1>
+      Happy Birthday<br>
+      Eshaaa 🎂
+    </h1>
+
+    <p>
+      okayyy birthday girl,
+      ab tumhari bari hai 😭🤍
+    </p>
+
+    <button
+      class="btn"
+      onclick="wish()"
+    >
+      ek aur cheez… 👀
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= FINAL WISH ================= -->
+
+<section class="screen hidden" id="wish">
+
+  <div class="card">
+
+    <div class="heart">
+      ♡
+    </div>
+
+    <div class="label">
+      for Esha
+    </div>
+
+    <h2>
+      Happy Birthdayyy 🤍
+    </h2>
+
+    <div class="message">
+
+      <p>
+        Pta hai humari baat itni zyada nhi hoti,
+        kabhi baat ho jati hai kabhi nhi hoti,
+        lekin phir bhi tum un logon mein se ho jo
+        kam baat ke bawajood bhi special lagte ho.
+      </p>
+
+      <p>
+        Bas dil se dua hai ke tum hamesha khush raho,
+        jo chaho wo mile aur life mein bohat sari
+        achi cheezein aayein. Aur jo bhi phase chal
+        raha ho, hopefully sab tumhare favour mein
+        ho jaye.
+      </p>
+
+      <p>
+        Aur obviously tumhari woh iconic
+        <b>“Guu kha lo”</b> wali line toh kabhi nhi
+        bhoolne wala 😭
+      </p>
+
+      <p>
+        Baat ho ya na ho, tum hamesha special rahogi
+        mere liye. Bas khush raho aur apna din
+        enjoy karo. 🫶🏻
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* ================= QUESTIONS ================= */
+
+const questions = [
+
+  {
+    text:"tum apne baare mein kya sochti ho? 😭",
+
+    options:[
+      "Main bohat shareef hoon 😇",
+      "Main bilkul pagal hoon 💀"
+    ],
+
+    responses:[
+      "hmmmmm… is answer ko verify karna parega 👀",
+      "at least self-awareness toh hai 😭"
+    ]
+  },
+
+
+  {
+    text:"tumhe kya lagta hai humari baat zyada hoti hai?",
+
+    options:[
+      "Kaafi hoti hai 😌",
+      "Bilkul nhi 💀"
+    ],
+
+    responses:[
+      "acha ji 😭 tumhara version of 'kaafi' interesting hai",
+      "haan ye toh sach hai bhae 😭"
+    ]
+  },
+
+
+  {
+    text:"agar koi tumse bohat kam baat kare lekin phir bhi tumhara birthday yaad rakhe…?",
+
+    options:[
+      "Usko yaad rehta hai bas 🤷🏻‍♀️",
+      "Kuch toh scene hai 👀"
+    ],
+
+    responses:[
+      "haan haan, simple answer 😭",
+      "hmmmm… interesting answer 👀"
+    ]
+  },
+
+
+  {
+    text:"agar main tumhara birthday bhool jaata toh kya karti? 😭",
+
+    options:[
+      "Maaf kar deti 🥺",
+      "Guu khila deti 💀"
+    ],
+
+    responses:[
+      "acha ji, itni achi bhi ho? 😭",
+      "ye answer expected tha honestly 💀"
+    ]
+  },
+
+
+  {
+    text:"kya har special person se roz baat karna zaroori hota hai?",
+
+    options:[
+      "Nahi, zaroori nhi 🤍",
+      "Haan warna special kaise? 😭"
+    ],
+
+    responses:[
+      "exactly… kuch log bas special hote hain.",
+      "acha toh phir daily attendance lagwani paregi? 😭"
+    ]
+  },
+
+
+  {
+    text:"last question… tumhe kya lagta hai ye sab kis liye tha? 👀",
+
+    options:[
+      "Kuch cute sa hai 🫶🏻",
+      "Pata nhi, tum pagal ho 💀"
+    ],
+
+    responses:[
+      "maybe you're right 👀",
+      "ye toh pehle se pata hona chahiye tha 😭"
+    ]
+  }
+
+];
+
+let currentQuestion = 0;
+
+
+/* ================= BASIC FUNCTIONS ================= */
+
+function hideAll(){
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen=>{
+      screen.classList.add("hidden");
+    });
+
+}
+
+
+/* ================= PHOTO PAGE ================= */
+
+function photoPage(){
+
+  hideAll();
+
+  document
+    .getElementById("photo")
+    .classList.remove("hidden");
+
+}
+
+
+function photoAnswer(answer){
+
+  const response =
+    document.getElementById("photoResponse");
+
+  if(answer){
+
+    response.textContent =
+      "hmmmm… shak toh abhi bhi hai 👀";
+
+  }else{
+
+    response.textContent =
+      "achaaa? 😭 phir asli Esha kahan hai?";
+
+  }
+
+  setTimeout(()=>{
+
+    currentQuestion = 0;
+
+    showQuestion();
+
+  },1100);
+
+}
+
+
+/* ================= QUESTIONS ================= */
+
+function showQuestion(){
+
+  hideAll();
+
+  document
+    .getElementById("questions")
+    .classList.remove("hidden");
+
+  const question =
+    questions[currentQuestion];
+
+  document.getElementById("qno").textContent =
+    "Question " +
+    String(currentQuestion + 1).padStart(2,"0");
+
+  document.getElementById("qtext").textContent =
+    question.text;
+
+  document.getElementById("resp").textContent =
+    "";
+
+  const options =
+    document.getElementById("opts");
+
+  options.innerHTML = "";
+
+  question.options.forEach((text,index)=>{
+
+    const button =
+      document.createElement("button");
+
+    button.className = "option";
+
+    button.textContent = text;
+
+    button.onclick = ()=>{
+      answerQuestion(index);
+    };
+
+    options.appendChild(button);
+
+  });
+
+}
+
+
+function answerQuestion(index){
+
+  const question =
+    questions[currentQuestion];
+
+  document.getElementById("resp").textContent =
+    question.responses[index];
+
+  document
+    .querySelectorAll("#opts .option")
+    .forEach(button=>{
+      button.disabled = true;
+    });
+
+  setTimeout(()=>{
+
+    currentQuestion++;
+
+    if(currentQuestion < questions.length){
+
+      showQuestion();
+
+    }else{
+
+      showCountdown();
+
+    }
+
+  },1100);
+
+}
+
+
+/* ================= COUNTDOWN ================= */
+
+function showCountdown(){
+
+  hideAll();
+
+  document
+    .getElementById("locked")
+    .classList.remove("hidden");
+
+  startCountdown();
+
+}
+
+
+function startCountdown(){
+
+  /*
+    22 September 2026
+    Pakistan Standard Time
+  */
+
+  const target =
+    new Date("2026-09-22T00:00:00+05:00").getTime();
+
+
+  function updateTimer(){
+
+    let difference =
+      target - Date.now();
+
+
+    if(difference <= 0){
+
+      hideAll();
+
+      document
+        .getElementById("birthday")
+        .classList.remove("hidden");
+
+      createConfetti();
+
+      return;
+
+    }
+
+
+    const days =
+      Math.floor(
+        difference / 86400000
+      );
+
+    difference %= 86400000;
+
+
+    const hours =
+      Math.floor(
+        difference / 3600000
+      );
+
+    difference %= 3600000;
+
+
+    const minutes =
+      Math.floor(
+        difference / 60000
+      );
+
+    difference %= 60000;
+
+
+    const seconds =
+      Math.floor(
+        difference / 1000
+      );
+
+
+    document.getElementById("days").textContent =
+      String(days).padStart(2,"0");
+
+    document.getElementById("hours").textContent =
+      String(hours).padStart(2,"0");
+
+    document.getElementById("mins").textContent =
+      String(minutes).padStart(2,"0");
+
+    document.getElementById("secs").textContent =
+      String(seconds).padStart(2,"0");
+
+  }
+
+
+  updateTimer();
+
+  setInterval(updateTimer,1000);
+
+}
+
+
+/* ================= FINAL WISH ================= */
+
+function wish(){
+
+  hideAll();
+
+  document
+    .getElementById("wish")
+    .classList.remove("hidden");
+
+  createConfetti();
+
+}
+
+
+/* ================= CONFETTI / HEARTS ================= */
+
+function createConfetti(){
+
+  const symbols =
+    ["♡","♥","✦","✧","·"];
+
+  for(let i=0;i<35;i++){
+
+    const item =
+      document.createElement("span");
+
+    item.className =
+      "falling";
+
+    item.textContent =
+      symbols[
+        Math.floor(
+          Math.random()*symbols.length
+        )
+      ];
+
+    item.style.left =
+      Math.random()*100+"vw";
+
+    item.style.animationDelay =
+      Math.random()*1.5+"s";
+
+    item.style.fontSize =
+      (12 + Math.random()*14)+"px";
+
+    document.body.appendChild(item);
+
+    setTimeout(()=>{
+      item.remove();
+    },6000);
+
+  }
+
+}
+
+</script>
+
+</body>
+  </html>
